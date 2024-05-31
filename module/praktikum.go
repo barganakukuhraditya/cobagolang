@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/indrariksa/cobapakcage/model"
+	"github.com/barganakukuhraditya/cobagolang/model"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 
