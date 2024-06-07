@@ -87,3 +87,23 @@ func TestGetAll(t *testing.T) {
 	fmt.Println(data)
 }
 */
+
+// # Testing Hapus Data
+func TestDeletePresensiByID(t *testing.T) {
+	id := "65fd4312caa947c1d5a121a0" // ID data yang ingin dihapus
+	objectID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		t.Fatalf("error converting id to ObjectID: %v", err)
+	}
+
+	err = module.DeletePresensiByID(objectID, module.MongoConn, "presensi")
+	if err != nil {
+		t.Fatalf("error calling DeletePresensiByID: %v", err)
+	}
+
+	// Verifikasi bahwa data telah dihapus dengan melakukan pengecekan menggunakan GetPresensiFromID
+	_, err = module.GetPresensiFromID(objectID, module.MongoConn, "presensi")
+	if err == nil {
+		t.Fatalf("expected data to be deleted, but it still exists")
+	}
+}
